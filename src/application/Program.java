@@ -7,11 +7,12 @@ import entities.Pessoa;
 
 public class Program {
 	
-	static ArrayList<Pessoa> data = new ArrayList<Pessoa>();
 	static Integer unidadeAvaliada = 0;
 	
 	public static void main(String[] args) {
 
+		ArrayList<Pessoa> data = new ArrayList<Pessoa>();
+		
 		Scanner sc = new Scanner(System.in);
 		
 		//LOADING
@@ -33,7 +34,6 @@ public class Program {
 		data.add(new Pessoa(42,1,75,90));
 		data.add(new Pessoa(46,1,75,78));
 		data.add(new Pessoa(52,1,75,59));
-		data.add(new Pessoa(54,1,75,75));
 		data.add(new Pessoa(56,1,8,87));
 		data.add(new Pessoa(57,1,75,51));
 		data.add(new Pessoa(63,1,75,76));
@@ -230,25 +230,32 @@ public class Program {
 		data.add(new Pessoa(646,1,26,66));
 		data.add(new Pessoa(649,1,29,20));
 		data.add(new Pessoa(650,1,30,23));
-		
+
 		System.out.print("Declare a unidade a ser avaliada: ");
 		unidadeAvaliada = sc.nextInt();
-		
-		//Aqui vou procurar as combinações da unidade 91.
+
+		//Aqui vou procurar as combinações da unidade.
 		String trace = "";
 		rastreio(unidadeAvaliada,trace,0,data);
+	
+		System.out.println();
+		System.out.print("Deseja recomeçar? (s/n) : ");
+		char c = sc.next().charAt(0);
 		
-	sc.close();
-	
+		if (c == 's') {
+			main(args);
+		}
+		
+		sc.close();
 	}
-	
+
 	//================== FUNÇÃO DE RASTREIO =================
 	//n = unidade avaliada
 	static int profundidade = 0;
 
 	public static void rastreio(Integer n, String trace,int profundidade,ArrayList<Pessoa> data) {
 
-		if(profundidade <= 20) {
+		if(profundidade <= 8) {
 			//CRITÉRIO DE PARADA
 			if(n == unidadeAvaliada && trace != "") {
 				System.out.println(trace);
@@ -267,4 +274,8 @@ public class Program {
 			}
 		}
 	}
+	
+	
+
+
 }
